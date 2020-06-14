@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome admin, {{ username }}</title>
+  <link rel="stylesheet" href="/static/style/common.css">
+  <link rel="stylesheet" href="/static/style/framework.css">
+  <link rel="stylesheet" href="/static/style/admpage.css">
+  <link rel="stylesheet" href="/static/images/iconfont.css">
+  <link rel="stylesheet" href="/static/js/lib/bootstrap.min.css">
+  <link rel="icon" href="/static/images/newslogo2.ico" type="image/x-icon">
+</head>
+
+<body>
+  <div class="mycontainer">
+    <div class="header">
+      <p>学生管理系统</p>
+    </div>
+    {% if message %}
+    <P style="color:#bbff4e">{{message}}</P>
+    {% endif %}
+    <div class="bigbox">
+      <div class="leftcol">
+        <div class="module">
+            <button class="sidebtn " id="adminSTD"><a href="/admin/stds" class="sidea">学生管理</a></button>
+        </div>
+        <div class="module">
+            <button class="sidebtn " id="adminUSER"><a href="/admin/users" class="sidea">用户管理</a></button>
+        </div>
+      </div>
+      <div class="rightcol">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel">新增管理员</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form>
+                                <div class="form-group">
+                                    <label class="control-label">用户名</label>
+                                    <input type="text" class="form-control" id="nusername" >
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">密码</label>
+                                    <input type="password" class="form-control" id="npassword">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">确认密码</label>
+                                    <input type="password" class="form-control" id="againpw">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">email</label>
+                                    <input type="text" class="form-control" id="useremail">
+                                    <div class="invalid-feedback">
+                                        Please provide a valid email.
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary submit" id="addsubmit">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ <nav class="navbar navbar-expand-lg navbar-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="javascript:void(0)" id="showstd">学生用户</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" id="showadm">管理员用户</a>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-primary submit" id="newadm" data-toggle="modal" data-target="#exampleModal">新增管理员</button>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+        <table class="table table-striped" id="userstd">
+          <thead>
+            <tr>
+              <th scope="col">用户名</th>
+              <th scope="col">Email</th>
+              <th scope="col">身份</th>
+              <th scope="col">操作 &nbsp</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for std in stds %}
+            <tr>
+              <td class="uname">{{ std.username }}</td>
+              <td class="uemail">{{ std.email }}</td>
+              <td class="role">{{ std.role }}</td>
+              <td><a href="javascript:void(0)" class="deleteUser">删除</a> </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+        <table class="table table-striped" id="useradm" style="display: none">
+          <thead>
+            <tr>
+              <th scope="col">用户名</th>
+              <th scope="col">Email</th>
+              <th scope="col">身份</th>
+              <th scope="col">操作 &nbsp</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for adm in adms %}
+            <tr>
+              <td class="uname">{{ adm.username }}</td>
+              <td class="uemail">{{ adm.email }}</td>
+              <td class="role">{{ adm.role }}</td>
+              <td><a href="javascript:void(0)" class="deleteUser">删除</a> </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="/static/js/lib/art-template.js"></script>
+  <script type="text/javascript" src="/static/js/lib/jquery-3.5.1.js"></script>
+  <script type="text/javascript" src="/static/js/lib/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="/static/js/aduser.js"></script>
+  <script type="text/javascript" src="/static/images/iconfont.js"></script>
+
+</body>
+
+</html>
