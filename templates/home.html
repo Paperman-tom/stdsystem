@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome, {{ username }}</title>
+</head>
+<body>
+<P>欢迎您 {{ username }}，您当前是<h3 style="color:red">{{ role }}</h3></P>
+<table border="1" cellspacing="0" cellpadding="5">
+    <tr>
+        <td>编号</td>
+        <td>姓名</td>
+        <td>性别</td>
+        <td>生日</td>
+        <td>民族</td>
+        <td>政治面貌</td>
+        <td>职务</td>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.gender }}</td>
+        <td>{{ user.birthday }}</td>
+        <td>{{ user.nationality }}</td>
+        <td>{{ user.politics_status }}</td>
+        <td>{{ user.job }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

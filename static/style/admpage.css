@@ -1,0 +1,16 @@
+.stdtable{
+    margin-top: -30%;
+}
+nav{
+    margin-top: -30%;
+    background: #f9fffe;
+}
+.sidea, .sidea:hover{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+.active{
+    border:3px #ffab08 ;
+    border-style: none none solid none;
+}

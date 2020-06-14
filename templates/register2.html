@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+    <link rel="stylesheet" href="/static/style/login.css">
+    <link rel="stylesheet" href="/static/style/common.css">
+    <link rel="stylesheet" href="/static/images/iconfont.css">
+    <link rel="stylesheet" href="/static/js/lib/bootstrap.min.css">
+    <link rel="icon" href="/static/images/newslogo2.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="mycontainer">
+    <div class="header">
+        <p>学生管理系统</p>
+    </div>
+{% if message %}
+<P style="color:#bbff4e">{{message}}</P>
+{% endif %}
+    <div class="input-box-container">
+
+        <div class="input-header" onclick="inputHeader()">
+            <p id="s-register">学生注册</p>
+        </div>
+
+        <div id="form">
+            <!--
+                用ajax提交；
+            -->
+            <form id="userform">
+
+                <ul id="userregist" >
+                    <li><input type="text" name="username" id="username" placeholder="请输入登录名" value=""></li>
+                    <li><input type="password" name="password" id="pass" value="" class="input-border-top" placeholder="请输入登录密码"></li>
+                    <li><input type="password" name="password" id="pass2" value=""  placeholder="请确认登录密码">
+                        <span id="ok">
+                            <svg t="1589199375382" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2184" width="32" height="32"><path d="M512 512m-512 0a512 512 0 1 0 1024 0 512 512 0 1 0-1024 0Z" fill="#0DC500" p-id="2185"></path><path d="M755.072 328.32a35.52 35.52 0 0 0-50.368 4.8l-255.616 307.648-132.608-123.584a36.032 36.032 0 1 0-48.768 53.056l160.576 148.928a35.392 35.392 0 0 0 24.384 9.536h2.112a35.968 35.968 0 0 0 25.6-12.8l280.064-336.768a37.248 37.248 0 0 0-5.376-50.816z" fill="#FFFFFF" p-id="2186"></path></svg>
+                        </span>
+                        <span id="fault">
+                            <svg t="1589201087597" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2937" width="32" height="32"><path d="M0.113778 510.577778a509.838222 509.838222 0 1 0 1019.676444 0 509.838222 509.838222 0 0 0-1019.676444 0z" fill="#FF2900" p-id="2938"></path><path d="M753.777778 737.621333l-8.192 8.647111a29.980444 29.980444 0 0 1-42.268445 0.796445l-437.475555-421.205333a29.980444 29.980444 0 0 1-0.739556-42.268445l8.248889-8.647111a29.980444 29.980444 0 0 1 42.211556-0.796444l437.475555 421.205333c11.832889 11.377778 12.231111 30.378667 0.796445 42.268444z" fill="#FFFFFF" p-id="2939"></path><path d="M282.396444 755.029333l-8.647111-8.248889a29.980444 29.980444 0 0 1-0.796444-42.268444l421.205333-437.475556a29.980444 29.980444 0 0 1 42.211556-0.739555l8.704 8.248889c11.832889 11.377778 12.117333 30.378667 0.796444 42.211555l-421.148444 437.475556a30.094222 30.094222 0 0 1-42.325334 0.796444z" fill="#FFFFFF" p-id="2940"></path></svg>
+                        </span>
+                    </li>
+                    <li><input type="text" name="email" id="email" value="" class="input-border-top" placeholder="请输入邮箱地址">
+                        <span id="ok2">
+                            <svg t="1589199375382" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2184" width="32" height="32"><path d="M512 512m-512 0a512 512 0 1 0 1024 0 512 512 0 1 0-1024 0Z" fill="#0DC500" p-id="2185"></path><path d="M755.072 328.32a35.52 35.52 0 0 0-50.368 4.8l-255.616 307.648-132.608-123.584a36.032 36.032 0 1 0-48.768 53.056l160.576 148.928a35.392 35.392 0 0 0 24.384 9.536h2.112a35.968 35.968 0 0 0 25.6-12.8l280.064-336.768a37.248 37.248 0 0 0-5.376-50.816z" fill="#FFFFFF" p-id="2186"></path></svg>
+                        </span>
+                        <span id="fault2">
+                            <svg t="1589201087597" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2937" width="32" height="32"><path d="M0.113778 510.577778a509.838222 509.838222 0 1 0 1019.676444 0 509.838222 509.838222 0 0 0-1019.676444 0z" fill="#FF2900" p-id="2938"></path><path d="M753.777778 737.621333l-8.192 8.647111a29.980444 29.980444 0 0 1-42.268445 0.796445l-437.475555-421.205333a29.980444 29.980444 0 0 1-0.739556-42.268445l8.248889-8.647111a29.980444 29.980444 0 0 1 42.211556-0.796444l437.475555 421.205333c11.832889 11.377778 12.231111 30.378667 0.796445 42.268444z" fill="#FFFFFF" p-id="2939"></path><path d="M282.396444 755.029333l-8.647111-8.248889a29.980444 29.980444 0 0 1-0.796444-42.268444l421.205333-437.475556a29.980444 29.980444 0 0 1 42.211556-0.739555l8.704 8.248889c11.832889 11.377778 12.117333 30.378667 0.796444 42.211555l-421.148444 437.475556a30.094222 30.094222 0 0 1-42.325334 0.796444z" fill="#FFFFFF" p-id="2940"></path></svg>
+                        </span>
+                    </li>
+                    <li><input type="text" name="checkcode" placeholder="请输入验证码" value=""></li>
+                </ul>
+
+                <div class="mybtn">
+                    <input type="button" name="submit" id="continue" value="继续">
+                    <a href="/login"><input type="button" id="back" name="register" value="返回"></a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/js/lib/art-template.js"></script>
+<script type="text/javascript" src="/static/js/lib/template-web.js"></script>
+<script type="text/javascript" src="/static/js/lib/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="/static/js/lib/bootstrap.js"></script>
+<script type="text/javascript" src="/static/js/login.js"></script>
+<script type="text/javascript" src="/static/js/register.js"></script>
+<script type="text/javascript" src="/static/images/iconfont.js"></script>
+
+</body>
+
+</html>

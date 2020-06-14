@@ -1,0 +1,46 @@
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+li{
+    text-decoration: none;
+}
+.header{
+    height: 100px;
+    background-color: #ffab08;
+    border: none;
+}
+.header p{
+    line-height: 100px;
+    color: #fff;
+    margin-left: 43px;
+    font-size: 38px;
+}
+.header span{
+    font-size:25px;
+}
+body,p,ul,li,.mycontainer,.header{
+    margin: 0;
+    padding: 0;
+}
+
+body,html{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+tr,td {
+    border:none;
+}
+table{
+    width: 100%;
+}
+
+td{
+    border-bottom:0.5px solid #c4c6c6 ;
+    padding: 0.5%;
+    font-size: 90%;
+}
+nav{
+    background: #f9fffe;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>stu-login</title>
+    <link rel="stylesheet" href="/static/style/login.css">
+    <link rel="stylesheet" href="/static/style/common.css">
+    <link rel="stylesheet" href="/static/images/iconfont.css">
+    <link rel="icon" href="/static/images/newslogo2.ico" type="image/x-icon">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <p>学生管理系统</p>
+    </div>
+        <div class="input-box-container">
+
+            <div class="input-header">
+                <span id="s-std">学生</span>
+                <span id="s-ad">管理员</span>
+            </div>
+{% if message %}
+<P style="color:red">{{message}}</P>
+{% endif %}
+            <div>
+
+                <form action="/login" method="post">
+                    <ul>
+                        <li><input type="text" name="username" class="name" placeholder="登陆名" value="{{ username }}"></li>
+                        <li><input type="password" name="password" value="" id="password" placeholder="密码"></li>
+                        <li><input type="text" name="checkcode" placeholder="验证码" value="">
+                        </li>
+                    </ul>
+
+                    <div class="mybtn">
+                        <input type="submit" name="login" id="login" value="登录">
+                        <a href="/register"><input type="button" id="register" name="register" value="注册"></a>
+                        <a href="" class="forget-pw">忘记密码</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+</div>
+
+<script src="../static/js/lib/jquery-3.5.1.js"></script>
+<script src="../static/js/login.js"></script>
+<script src="../static/images/iconfont.js"></script>
+</body>
+</html>

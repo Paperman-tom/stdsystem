@@ -1,0 +1,14 @@
+#updateinfo{
+    display:block;
+    float: right;
+    margin-top: 13px;
+    color: #ffab08;
+}
+.col-sm-10{
+    width: 200px;
+}
+.sidea, .sidea:hover{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
