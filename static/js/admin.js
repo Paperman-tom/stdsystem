@@ -87,15 +87,3 @@ $('.deleteStd').click(function () {
         }
     })
 });
-$('#showadm').click(function () {
-    $('#showadm').parent().addClass("active");
-    $('#showstd').parent().removeClass("active");
-    $('#useradm').show();
-    $('#userstd').hide();
-});
-$('#showstd').click(function () {
-    $('#showstd').parent().addClass("active");
-    $('#showadm').parent().removeClass("active");
-    $('#useradm').hide();
-    $('#userstd').show();
-});

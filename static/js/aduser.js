@@ -1,15 +1,27 @@
+/*
+* 切换学生和管理员用户的表格显示
+*/
+
 $('#showadm').click(function () {
     $('#showadm').parent().addClass("active");
     $('#showstd').parent().removeClass("active");
     $('#useradm').show();
     $('#userstd').hide();
+    $('#searchResult').hide();
 });
+
 $('#showstd').click(function () {
     $('#showstd').parent().addClass("active");
     $('#showadm').parent().removeClass("active");
     $('#useradm').hide();
     $('#userstd').show();
+    $('#searchResult').hide();
 });
+
+
+/*
+* 前端验证确认密码和邮箱格式有效性
+* */
 
 $('#againpw').blur(function () {
     $('#againpw').removeClass("is-valid");
@@ -42,7 +54,7 @@ $('#useremail').blur(function () {
     $('#useremail').removeClass("is-valid");
     $('#useremail').removeClass("is-invalid");
     $('#addsubmit').attr('disabled', false);
-    if (isEmail($('#email').val())) {
+    if (isEmail($('#useremail').val())) {
         $('#useremail').addClass("is-valid");
     } else {
         $('#useremail').addClass("is-invalid");
@@ -50,6 +62,7 @@ $('#useremail').blur(function () {
     }
 });
 
+//模态框提交
 $('#addsubmit').click(function () {
     $.ajax({
         url:'/admin/addADM',
@@ -79,15 +92,44 @@ $('#addsubmit').click(function () {
     })
 });
 
-$('.deleteUser').click(function () {
-    var pemail=$(this).parent().prevAll('.uemail').html();
+//单行删除
+var delclick= function () {
+        var pemail=$(event.target).parent().prevAll('.uemail').html();
+        $.ajax({
+            url:'/admin/delU',
+            type:'post',
+            datatype:'json',
+            data:JSON.stringify(
+                {
+                pemail: pemail
+                }
+            ),
+             headers: {
+                "Content-Type": "application/json;charset=utf-8"
+             },
+            contentType: "application/json; charset=utf-8",
+            success:function (data) {
+                alert("删除成功");
+                console.log(data);
+                window.location.reload();
+            },
+            error:function (err) {
+                console.log(err);
+                alert("删除失败，请稍候再试");
+                window.location.reload();
+            }
+        })
+};
+
+//搜索框
+$('#searchU').click(function () {
     $.ajax({
-        url:'/admin/delU',
+        url:'/admin/searchU',
         type:'post',
         datatype:'json',
         data:JSON.stringify(
             {
-            pemail: pemail
+            username: $('#searchText').val()
             }
         ),
         headers: {
@@ -95,13 +137,31 @@ $('.deleteUser').click(function () {
         },
         contentType: "application/json; charset=utf-8",
         success:function (data) {
-            alert("删除成功");
+            $('#searchRows').html('');
+            $('#useradm').hide();
+            $('#userstd').hide();
+            $('#searchResult').show();
             console.log(data);
-            window.location.reload();
+            if (data==''){
+                alert("对不起，没有该用户");
+                window.location.reload();
+            }
+            for (var i = 0; i < data.length; i++) {
+                data1 = JSON.stringify(data[i]);
+                data2 = JSON.parse(data1);
+                $.get('/static/js/searchResult.html',function (data3) {
+                    render = template.compile(data3);
+                    newRow = render(data2);
+                    console.log(newRow);
+                    $('#searchRows').append(newRow);
+                    console.log('yes');
+                });
+            }
+
         },
         error:function (err) {
             console.log(err);
-            alert("删除失败，请稍候再试");
+            alert("对不起，查找失败，请稍后再试");
             window.location.reload();
         }
     })
