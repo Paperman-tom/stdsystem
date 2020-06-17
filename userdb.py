@@ -48,11 +48,11 @@ def insertData(data):
 
 
 def updateStd(data):
-        sql = "UPDATE std SET birthday=%s, tel=%s WHERE id=%s"
-        params = (data['birthday'], data['tel'], data['id'])
-        # 目前这种SQL语句总感觉有点勉强，因为有很多个占位符，参数必须要严格按照先后顺序插入
-        executeSql(sql, params)
-        print("execute update success. -> %s" % str(data))
+    sql = "UPDATE std SET birthday=%s, tel=%s WHERE id=%s"
+    params = (data['birthday'], data['tel'], data['id'])
+    # 目前这种SQL语句总感觉有点勉强，因为有很多个占位符，参数必须要严格按照先后顺序插入
+    executeSql(sql, params)
+    print("execute update success. -> %s" % str(data))
 
 
 def alterEmail(data):
@@ -64,6 +64,11 @@ def alterEmail(data):
 
 
 def alterStd(data):
+    """
+    由于外键约束，要先修改对应用户的邮箱
+    :param data: 要修改的邮箱
+    :return:
+    """
     alterEmail(data)
     sql = "UPDATE std SET name=%s, gender=%s, birthday=%s, tel=%s, graduate=%s WHERE id=%s"
     params = (data['nname'], data['ngender'], data['nbirthday'], data['ntel'], data['ngra'], data['id'])
@@ -75,6 +80,9 @@ def alterStd(data):
 
 
 def delUser(data):
+    """
+    由于外键约束，删除用户时先在std表中删除对应学生
+    """
     sql0 = "DELETE FROM std WHERE email=%s"
     sql = "DELETE FROM user WHERE email=%s"
     params = (data['pemail'])

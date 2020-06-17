@@ -1,3 +1,4 @@
+//显示全部学生名单
 $('#showstds').click(function () {
     $('.stdtable').show();
     $('#searchResult').hide();
@@ -23,6 +24,8 @@ var alterclick=function () {
     $('#graduate').val(pgra);
     return pemail;
 };
+
+//模态框提交 ajax
 $('#altersubmit').click(function () {
     var id=$('#stdid').val();
     var nname=$('#stdname').val();
@@ -93,6 +96,8 @@ var delclick=function () {
         }
     })
 };
+
+//先编译一个渲染函数
 var render;
 $.get('/static/js/searchReS.html',function (data3) {
     render = template.compile(data3);
@@ -122,7 +127,7 @@ $('#searchS').click(function () {
                 alert("对不起，没有该用户");
                 window.location.reload();
             }
-
+            //插入查询结果注意两层解析数据
             for (var i = 0; i < data.length; i++) {
                 data1 = JSON.stringify(data[i]);
                 data2 = JSON.parse(data1);

@@ -14,6 +14,9 @@ from flask import Flask, request, render_template, jsonify, abort
 from flask.json import JSONEncoder
 
 class MyJSONEncoder(JSONEncoder):
+    """
+    方便对象序列化
+    """
     def default(self, obj):
         if isinstance(obj, User):
             return {
@@ -77,7 +80,7 @@ def home():
 
 @webApp.route("/info", methods=["POST"])
 def info():
-    print(request.form)
+    # print(request.form)
     name = request.form["name"]
     id = request.form["id"]
     gender = request.form["gender"]
@@ -85,8 +88,8 @@ def info():
     tel = request.form["tel"]
     email = request.form["email"]
     graduate = request.form["graduate"]
-    for keys in request.form:
-        print(keys + "=" + request.form[keys])
+    # for keys in request.form:
+    #     print(keys + "=" + request.form[keys])
     try:
         s = Std()
         s.name = name
@@ -96,7 +99,7 @@ def info():
         s.birthday = birthday
         s.gender = Gender[gender]
         s.graduate = Graduate[graduate]
-        print(s)
+        # print(s)
         insertData(s)
         return render_template("login.html")
     except (ValueError, TypeError, RuntimeError):
@@ -110,16 +113,13 @@ def registerpage():
 
 @webApp.route("/register/", methods=["POST"])
 def register():
-    print(request.get_data(as_text=True))
+    # print(request.get_data(as_text=True))
     data = request.get_json()
     print("data=", data)
     username = data["username"]
     password = data["password"]
     email = data["email"]
-    # username = request.values.get("username")
-    # password = request.values.get("password")
-    # email = request.values.get("email")
-    print(username, password, email)
+    # print(username, password, email)
     try:
         u = User()
         u.role = Role['STUDENT']
@@ -168,7 +168,7 @@ def loginpage():
 
 @webApp.route("/update", methods=["POST"])
 def update():
-    print(request.get_data(as_text=True))
+    # print(request.get_data(as_text=True))
     data = request.get_json()
     print("data=", data)
     id = data["id"]
@@ -184,7 +184,7 @@ def update():
 
 @webApp.route("/admin/alterS", methods=["POST"])
 def alterS():
-    print(request.get_data(as_text=True))
+    # print(request.get_data(as_text=True))
     data = request.get_json()
     print("data=", data)
     try:
@@ -196,7 +196,7 @@ def alterS():
 
 @webApp.route("/admin/delS", methods=["POST"])
 def delS():
-    print(request.get_data(as_text=True))
+    # print(request.get_data(as_text=True))
     data = request.get_json()
     print("data=", data)
     try:
@@ -209,7 +209,7 @@ def delS():
 
 @webApp.route("/admin/delU", methods=["POST"])
 def delU():
-    print(request.get_data(as_text=True))
+    # print(request.get_data(as_text=True))
     data = request.get_json()
     print("data=", data)
     try:
@@ -229,13 +229,12 @@ def allstds():
 def allusers():
     userStds = queryStudents()
     userAdms = queryAdmins()
-
     return render_template("adusers.html",  stds=userStds, adms=userAdms)
 
 
 @webApp.route("/admin/addADM", methods=["POST"])
 def addADM():
-    print(request.get_data(as_text=True))
+    # print(request.get_data(as_text=True))
     data = request.get_json()
     username = data["username"]
     password = data["password"]
@@ -257,14 +256,14 @@ def addADM():
 
 @webApp.route("/admin/searchU", methods=["POST"])
 def searchU():
-    print(request.get_data(as_text=True))
+    # print(request.get_data(as_text=True))
     data = request.get_json()
     username = data["username"]
     print(username)
     try:
         results = queryUsersBysname(username)
         print(results)
-        print(jsonify(results))
+        # print(jsonify(results))
         return jsonify(results)
     except (ValueError, TypeError, RuntimeError):
         return abort(400)
@@ -272,7 +271,7 @@ def searchU():
 
 @webApp.route("/admin/searchS", methods=["POST"])
 def searchS():
-    print(request.get_data(as_text=True))
+    # print(request.get_data(as_text=True))
     data = request.get_json()
     key = data["key"]
     kw = data["kw"]
@@ -280,7 +279,7 @@ def searchS():
     try:
         results = queryStdByKey(key,kw)
         print(results)
-        print(jsonify(results))
+        # print(jsonify(results))
         return jsonify(results)
     except (ValueError, TypeError, RuntimeError):
         return abort(400)
