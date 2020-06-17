@@ -10,8 +10,28 @@ from userdb import *
 import pymysql
 import json
 
-from flask import Flask, request, render_template, jsonify, url_for, redirect
+from flask import Flask, request, render_template, jsonify, abort
+from flask.json import JSONEncoder
 
+class MyJSONEncoder(JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, User):
+            return {
+                'username': obj.username,
+                'email': obj.email,
+                'role': obj.role,
+            }
+        if isinstance(obj, Std):
+            return {
+                'id': obj.id,
+                'name': obj.name,
+                'gender': obj.gender,
+                'birthday': obj.birthday,
+                'tel': obj.tel,
+                'email': obj.email,
+                'graduate': obj.graduate,
+            }
+        return super(MyJSONEncoder, self).default(obj)
 
 
 # 如果已经存在user表，则先删除掉
@@ -45,6 +65,7 @@ insertData(ADMINU)
 
 
 webApp = Flask(__name__)
+webApp.json_encoder = MyJSONEncoder
 
 webApp.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
 
@@ -158,7 +179,7 @@ def update():
         updateStd(newstd)
         return "change successfully"
     except (ValueError, TypeError, RuntimeError):
-        return 'err'
+        return abort(400)
 
 
 @webApp.route("/admin/alterS", methods=["POST"])
@@ -170,7 +191,7 @@ def alterS():
         alterStd(data)
         return "change successfully"
     except (ValueError, TypeError, RuntimeError):
-        return 'err'
+        return abort(400)
 
 
 @webApp.route("/admin/delS", methods=["POST"])
@@ -182,7 +203,8 @@ def delS():
         delStd(data)
         return "delete successfully"
     except (ValueError, TypeError, RuntimeError):
-        return 'err'
+        return abort(400)
+
 
 
 @webApp.route("/admin/delU", methods=["POST"])
@@ -194,7 +216,7 @@ def delU():
         delUser(data)
         return "delete successfully"
     except (ValueError, TypeError, RuntimeError):
-        return 'err'
+        return abort(400)
 
 
 @webApp.route("/admin/stds", methods=["GET", "POST"])
@@ -230,7 +252,38 @@ def addADM():
         insertData(u)
         return jsonify({"name": username, "email": email})
     except (ValueError, TypeError, RuntimeError):
-        return 'err'
+        return abort(400)
+
+
+@webApp.route("/admin/searchU", methods=["POST"])
+def searchU():
+    print(request.get_data(as_text=True))
+    data = request.get_json()
+    username = data["username"]
+    print(username)
+    try:
+        results = queryUsersBysname(username)
+        print(results)
+        print(jsonify(results))
+        return jsonify(results)
+    except (ValueError, TypeError, RuntimeError):
+        return abort(400)
+
+
+@webApp.route("/admin/searchS", methods=["POST"])
+def searchS():
+    print(request.get_data(as_text=True))
+    data = request.get_json()
+    key = data["key"]
+    kw = data["kw"]
+    print(key, kw)
+    try:
+        results = queryStdByKey(key,kw)
+        print(results)
+        print(jsonify(results))
+        return jsonify(results)
+    except (ValueError, TypeError, RuntimeError):
+        return abort(400)
 
 
 

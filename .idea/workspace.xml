@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48412850-78a5-4fa4-a9d4-12f9b0aa9e91" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/searchReS.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/searchResult.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/aduser.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/aduser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style/admpage.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style/admpage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style/framework.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style/framework.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/adusers.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/adusers.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/userdb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web.py" beforeDir="false" afterPath="$PROJECT_DIR$/web.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -126,6 +138,7 @@
       <workItem from="1589874934817" duration="37440000" />
       <workItem from="1590308985275" duration="41596000" />
       <workItem from="1592400697930" duration="266000" />
+      <workItem from="1592405007717" duration="785000" />
     </task>
     <servers />
   </component>
@@ -137,7 +150,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

@@ -15,7 +15,7 @@
 <body>
   <div class="mycontainer">
     <div class="header">
-      <p>学生管理系统</p>
+      <p>学生管理系统 <a href="/" style="font-size: 20px; margin-left: 75%; color: white;">退出</a></p>
     </div>
     {% if message %}
     <P style="color:#bbff4e">{{message}}</P>
@@ -86,8 +86,8 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2" type="search" placeholder="查找用户名" aria-label="Search" id="searchText">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searchU">Search</button>
     </form>
   </div>
 </nav>
@@ -100,13 +100,13 @@
               <th scope="col">操作 &nbsp</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="rows">
           {% for std in stds %}
-            <tr>
+            <tr class="myrow">
               <td class="uname">{{ std.username }}</td>
               <td class="uemail">{{ std.email }}</td>
               <td class="role">{{ std.role }}</td>
-              <td><a href="javascript:void(0)" class="deleteUser">删除</a> </td>
+              <td class="deletrow"><a href="javascript:void(0)" class="deleteUser" onclick=delclick()>删除</a> </td>
             </tr>
           {% endfor %}
           </tbody>
@@ -120,17 +120,35 @@
               <th scope="col">操作 &nbsp</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="rows">
           {% for adm in adms %}
-            <tr>
+            <tr class="myrow">
               <td class="uname">{{ adm.username }}</td>
               <td class="uemail">{{ adm.email }}</td>
               <td class="role">{{ adm.role }}</td>
-              <td><a href="javascript:void(0)" class="deleteUser">删除</a> </td>
+              <td class="deletrow">
+                {% if adm.email != 'admin@admin.com' %}
+                    <a href="javascript:void(0)" class="deleteUser" onclick="delclick()">删除</a>
+                {% endif %}
+              </td>
             </tr>
           {% endfor %}
           </tbody>
         </table>
+        <table class="table table-striped" id="searchResult" style="display: none">
+          <thead>
+            <tr>
+              <th scope="col">用户名</th>
+              <th scope="col">Email</th>
+              <th scope="col">身份</th>
+              <th scope="col">操作 &nbsp</th>
+            </tr>
+          </thead>
+          <tbody id="searchRows" class="rows">
+
+          </tbody>
+        </table>
+
       </div>
     </div>
   </div>

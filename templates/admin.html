@@ -15,7 +15,7 @@
 <body>
   <div class="mycontainer">
     <div class="header">
-      <p>学生管理系统</p>
+      <p>学生管理系统 <a href="/" style="font-size: 20px; margin-left: 75%; color: white;">退出</a></p>
     </div>
     {% if message %}
     <P style="color:#bbff4e">{{message}}</P>
@@ -85,7 +85,30 @@
                 </div>
             </div>
 
+    <nav class="navbar navbar-expand-lg navbar-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="javascript:void(0)" id="showstds">学生名单</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <label class="my-1 mr-2" for="searchKey">查找</label>
+      <select class="custom-select my-1 mr-sm-2" id="searchKey">
+        <option value="name" selected>姓名</option>
+        <option value="id">学号</option>
+        <option value="tel">电话</option>
+        <option value="email">邮箱</option>
+      </select>
+      <input class="form-control mr-sm-2" type="search" placeholder="查找关键词" aria-label="Search" id="searchText">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searchS">Search</button>
+    </form>
+  </div>
+</nav>
         <table class="table table-striped stdtable">
           <thead>
             <tr>
@@ -109,13 +132,29 @@
               <td class="ptel">{{ std.tel }}</td>
               <td class="pemail">{{ std.email }}</td>
               <td class="pgraduate">{{ std.graduate }}</td>
-              <td><a href="javascript:void(0)" class="alter" data-toggle="modal" data-target="#exampleModal">修改</a> </td>
-              <td><a href="javascript:void(0)" class="deleteStd">删除</a> </td>
+              <td><a href="javascript:void(0)" class="alter" data-toggle="modal" data-target="#exampleModal" onclick="alterclick()">修改</a> </td>
+              <td><a href="javascript:void(0)" class="deleteStd" onclick="delclick()">删除</a> </td>
             </tr>
           {% endfor %}
           </tbody>
         </table>
+        <table class="table table-striped resulttable" id="searchResult" style="display: none">
+          <thead>
+            <tr>
+              <th scope="col">学号</th>
+              <th scope="col">姓名</th>
+              <th scope="col">性别</th>
+              <th scope="col">生日</th>
+              <th scope="col">电话</th>
+              <th scope="col">Email</th>
+              <th scope="col">身份</th>
+              <th scope="col">操作 &nbsp</th>
+            </tr>
+          </thead>
+          <tbody id="searchRows" class="rows">
 
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

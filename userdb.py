@@ -75,8 +75,10 @@ def alterStd(data):
 
 
 def delUser(data):
+    sql0 = "DELETE FROM std WHERE email=%s"
     sql = "DELETE FROM user WHERE email=%s"
     params = (data['pemail'])
+    executeSql(sql0, params)
     executeSql(sql, params)
 
 
@@ -197,36 +199,50 @@ def queryStdByemail(email):
 
 def queryStdByKey(key,kw):
     """
-    根据email查询对应的学生在本地数据表中是否存在
+    根据关键词模糊查询对应的学生在本地数据表中是否存在
     \n
     :param key: 被查询的关键字名
     :param kw: 关键字
     :return: 若存在对应的学生则返回该学生的对象，否则返回None
     """
-    keys=['name', 'tel', 'graduate']
+    datas = []
+    keys=['name', 'tel', 'graduate', 'email', 'id']
+    sql = "SELECT * FROM std WHERE name like %s"
     if key in keys:
         if not kw is None:
-            sql = "SELECT * FROM std WHERE %s = %s"
-            params = (key, kw,)
+            if key == 'name':
+                sql = "SELECT * FROM std WHERE name like %s"
+            elif key == 'tel':
+                sql = "SELECT * FROM std WHERE tel like %s"
+            elif key == 'email':
+                sql = "SELECT * FROM std WHERE email like %s"
+            elif key == 'id':
+                sql = "SELECT * FROM std WHERE id like %s"
+            elif key == 'graduate':
+                sql = "SELECT * FROM std WHERE graduate like %s"
+            args = '%'+kw+'%'
+            params = (args,)
             values = executeSql(sql, params, True)
-            if len(values) > 0:
-                return pack("std", values[0])
-            return None
+            for value in values:
+                datas.append(pack('std', value))
+            return datas
+        return None
 
 
 
-def querydataBysname(sname):
+def queryUsersBysname(sname):
     """
-    根据用户名查询对应的用户在本地数据表中是否存在
+    根据用户名模糊查询对应的用户在本地数据表中是否存在
     \n
     :param sname: 被查询的学生姓名
     :return: 若存在对应的用户则返回该用户的对象，否则返回None
     """
     datas = []
     if not sname is None:
-        sql = "SELECT * FROM std WHERE name = %s"
-        params = (sname,)
+        sql = "SELECT * FROM user WHERE username like %s"
+        args = '%'+sname+'%'
+        params = (args,)
         values = executeSql(sql, params, True)
         for value in values:
-            datas.append(pack('std', value))
+            datas.append(pack('user', value))
     return datas

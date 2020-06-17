@@ -1,8 +1,7 @@
-.stdtable{
-    margin-top: -30%;
-}
 nav{
-    margin-top: -30%;
+    flex: inherit;
+    height: fit-content;
+    width: 100%;
     background: #f9fffe;
 }
 .sidea, .sidea:hover{
@@ -13,4 +12,8 @@ nav{
 .active{
     border:3px #ffab08 ;
     border-style: none none solid none;
+}
+table{
+    flex: inherit;
+    margin-top: 2%;
 }
