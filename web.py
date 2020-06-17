@@ -21,6 +21,16 @@ class MyJSONEncoder(JSONEncoder):
                 'email': obj.email,
                 'role': obj.role,
             }
+        if isinstance(obj, Std):
+            return {
+                'id': obj.id,
+                'name': obj.name,
+                'gender': obj.gender,
+                'birthday': obj.birthday,
+                'tel': obj.tel,
+                'email': obj.email,
+                'graduate': obj.graduate,
+            }
         return super(MyJSONEncoder, self).default(obj)
 
 
@@ -251,6 +261,22 @@ def searchU():
     print(username)
     try:
         results = queryUsersBysname(username)
+        print(results)
+        print(jsonify(results))
+        return jsonify(results)
+    except (ValueError, TypeError, RuntimeError):
+        return abort(400)
+
+
+@webApp.route("/admin/searchS", methods=["POST"])
+def searchS():
+    print(request.get_data(as_text=True))
+    data = request.get_json()
+    key = data["key"]
+    kw = data["kw"]
+    print(key, kw)
+    try:
+        results = queryStdByKey(key,kw)
         print(results)
         print(jsonify(results))
         return jsonify(results)

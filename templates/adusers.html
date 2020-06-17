@@ -15,7 +15,7 @@
 <body>
   <div class="mycontainer">
     <div class="header">
-      <p>学生管理系统</p>
+      <p>学生管理系统 <a href="/" style="font-size: 20px; margin-left: 75%; color: white;">退出</a></p>
     </div>
     {% if message %}
     <P style="color:#bbff4e">{{message}}</P>
@@ -86,7 +86,7 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchText">
+      <input class="form-control mr-sm-2" type="search" placeholder="查找用户名" aria-label="Search" id="searchText">
       <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searchU">Search</button>
     </form>
   </div>
@@ -126,7 +126,11 @@
               <td class="uname">{{ adm.username }}</td>
               <td class="uemail">{{ adm.email }}</td>
               <td class="role">{{ adm.role }}</td>
-              <td class="deletrow"><a href="javascript:void(0)" class="deleteUser" onclick="delclick()">删除</a> </td>
+              <td class="deletrow">
+                {% if adm.email != 'admin@admin.com' %}
+                    <a href="javascript:void(0)" class="deleteUser" onclick="delclick()">删除</a>
+                {% endif %}
+              </td>
             </tr>
           {% endfor %}
           </tbody>
@@ -150,6 +154,7 @@
   </div>
 
   <script type="text/javascript" src="/static/js/lib/art-template.js"></script>
+  <script type="text/html" src="/static/js/searchResult.html" id="searchResult-art"></script>
   <script type="text/javascript" src="/static/js/lib/jquery-3.5.1.js"></script>
   <script type="text/javascript" src="/static/js/lib/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="/static/js/aduser.js"></script>

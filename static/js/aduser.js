@@ -120,7 +120,10 @@ var delclick= function () {
             }
         })
 };
-
+var render;
+$.get('/static/js/searchResult.html',function (data3) {
+    render = template.compile(data3);
+});
 //搜索框
 $('#searchU').click(function () {
     $.ajax({
@@ -146,16 +149,14 @@ $('#searchU').click(function () {
                 alert("对不起，没有该用户");
                 window.location.reload();
             }
+
             for (var i = 0; i < data.length; i++) {
                 data1 = JSON.stringify(data[i]);
                 data2 = JSON.parse(data1);
-                $.get('/static/js/searchResult.html',function (data3) {
-                    render = template.compile(data3);
-                    newRow = render(data2);
-                    console.log(newRow);
-                    $('#searchRows').append(newRow);
-                    console.log('yes');
-                });
+                newRow = render(data2);
+                console.log(newRow);
+                $('#searchRows').append(newRow);
+                console.log('yes');
             }
 
         },

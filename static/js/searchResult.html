@@ -2,5 +2,10 @@
   <td class="uname">{{ username }}</td>
   <td class="uemail">{{ email }}</td>
   <td class="role">{{ role }}</td>
-  <td class="deletrow"><a href="javascript:void(0)" class="deleteUser" onclick="delclick()">删除</a> </td>
+  <td class="deletrow">
+    {{ if email!='admin@admin.com' }}
+      <a href="javascript:void(0)" class="deleteUser" onclick="delclick()">删除</a>
+    {{ /if }}
+
+  </td>
 </tr>

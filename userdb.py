@@ -75,8 +75,10 @@ def alterStd(data):
 
 
 def delUser(data):
+    sql0 = "DELETE FROM std WHERE email=%s"
     sql = "DELETE FROM user WHERE email=%s"
     params = (data['pemail'])
+    executeSql(sql0, params)
     executeSql(sql, params)
 
 
@@ -204,15 +206,26 @@ def queryStdByKey(key,kw):
     :return: 若存在对应的学生则返回该学生的对象，否则返回None
     """
     datas = []
-    keys=['name', 'tel', 'graduate']
+    keys=['name', 'tel', 'graduate', 'email', 'id']
+    sql = "SELECT * FROM std WHERE name like %s"
     if key in keys:
         if not kw is None:
-            sql = "SELECT * FROM std WHERE %s like %s"
-            params = (key, kw,)
+            if key == 'name':
+                sql = "SELECT * FROM std WHERE name like %s"
+            elif key == 'tel':
+                sql = "SELECT * FROM std WHERE tel like %s"
+            elif key == 'email':
+                sql = "SELECT * FROM std WHERE email like %s"
+            elif key == 'id':
+                sql = "SELECT * FROM std WHERE id like %s"
+            elif key == 'graduate':
+                sql = "SELECT * FROM std WHERE graduate like %s"
+            args = '%'+kw+'%'
+            params = (args,)
             values = executeSql(sql, params, True)
             for value in values:
                 datas.append(pack('std', value))
-            return None
+            return datas
         return None
 
 
