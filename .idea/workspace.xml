@@ -4,8 +4,8 @@
     <list default="true" id="48412850-78a5-4fa4-a9d4-12f9b0aa9e91" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style/stdpage.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style/stdpage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/userdb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web.py" beforeDir="false" afterPath="$PROJECT_DIR$/web.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -130,8 +130,16 @@
       <workItem from="1589874934817" duration="37440000" />
       <workItem from="1590308985275" duration="41596000" />
       <workItem from="1592400697930" duration="266000" />
-      <workItem from="1592405007717" duration="3325000" />
+      <workItem from="1592405007717" duration="18628000" />
     </task>
+    <task id="LOCAL-00001" summary="完成了部分注释">
+      <created>1592411419501</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1592411419501</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,7 +199,11 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="完成了部分注释" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成了部分注释" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/untitled$web.coverage" NAME="web Coverage Results" MODIFIED="1592406037569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/untitled$web.coverage" NAME="web Coverage Results" MODIFIED="1592723841939" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

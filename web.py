@@ -124,7 +124,7 @@ def register():
         u = User()
         u.role = Role['STUDENT']
         md5 = hashlib.md5()
-        md5.update(password.encode("utf-8"))
+        md5.update(password.encode("utf-8")) #使用md5加密算法加密密码
         u.password = md5.hexdigest()
         u.username = username
         u.email = email
@@ -148,12 +148,12 @@ def login():
             roles = {Role.ADMIN.name: "管理员", Role.STUDENT.name: "学生"}
             users = []
             stds=[]
-            if Role[user.role] == Role.ADMIN:
+            if Role[user.role] == Role.ADMIN: #如果身份是管理员，则展示管理员界面
                 stds = queryallStd()
                 # print(stds)
                 # print('ok')
                 return render_template("admin.html", username=user.username, role=roles[user.role], users=users, stds=stds)
-            elif Role[user.role] == Role.STUDENT:
+            elif Role[user.role] == Role.STUDENT: #如果身份是学生，则展示学生界面
                 users.append(user)
                 std = queryStdByemail(user.email)
                 return render_template("index.html", username=user.username, role=roles[user.role], users=users, std=std)

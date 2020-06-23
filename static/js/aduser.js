@@ -96,24 +96,24 @@ $('#addsubmit').click(function () {
 var delclick= function () {
         var pemail=$(event.target).parent().prevAll('.uemail').html();
         $.ajax({
-            url:'/admin/delU',
-            type:'post',
-            datatype:'json',
-            data:JSON.stringify(
+            url:'/admin/delU', //指定请求的URL
+            type:'post', //请求类型为POST
+            datatype:'json', //数据格式为json
+            data:JSON.stringify( //传的数据
                 {
                 pemail: pemail
                 }
             ),
-             headers: {
+             headers: { //请求头
                 "Content-Type": "application/json;charset=utf-8"
              },
-            contentType: "application/json; charset=utf-8",
-            success:function (data) {
+            contentType: "application/json; charset=utf-8", //指定希望返回的格式
+            success:function (data) { //响应成功后的回调函数
                 alert("删除成功");
                 console.log(data);
                 window.location.reload();
             },
-            error:function (err) {
+            error:function (err) { //响应失败后的回调函数
                 console.log(err);
                 alert("删除失败，请稍候再试");
                 window.location.reload();

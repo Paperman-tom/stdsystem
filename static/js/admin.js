@@ -105,20 +105,20 @@ $.get('/static/js/searchReS.html',function (data3) {
 //搜索框
 $('#searchS').click(function () {
     $.ajax({
-        url:'/admin/searchS',
-        type:'post',
-        datatype:'json',
-        data:JSON.stringify(
+        url:'/admin/searchS', //指定请求的url
+        type:'post', //请求类型为POST
+        datatype:'json', //数据格式为json
+        data:JSON.stringify( //发送的数据
             {
             key: $('#searchKey').val(),
             kw: $('#searchText').val()
             }
         ),
-        headers: {
+        headers: { //请求头
             "Content-Type": "application/json;charset=utf-8"
         },
-        contentType: "application/json; charset=utf-8",
-        success:function (data) {
+        contentType: "application/json; charset=utf-8", //需要的响应格式
+        success:function (data) { //请求成功后的回调函数
             $('#searchRows').html('');
             $('.stdtable').hide();
             $('#searchResult').show();
@@ -132,14 +132,13 @@ $('#searchS').click(function () {
                 data1 = JSON.stringify(data[i]);
                 data2 = JSON.parse(data1);
                 data2['birthday']=(new Date(data2['birthday'])).toLocaleDateString().replace(/\//g,"-");
-                newRow = render(data2);
+                newRow = render(data2); //使用art-template编译的渲染函数渲染数据
                 console.log(newRow);
                 $('#searchRows').append(newRow);
                 console.log('yes');
             }
-
         },
-        error:function (err) {
+        error:function (err) { //请求错误的回调函数
             console.log(err);
             alert("对不起，查找失败，请稍后再试");
             window.location.reload();
